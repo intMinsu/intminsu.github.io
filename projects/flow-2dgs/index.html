@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FLOW-2DGS | Minsu Kwon</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      background: #fafafa;
+      color: #222;
+    }
+    a { color: #0066cc; text-decoration: none; }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 1.2rem 3rem;
+    }
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e5e5;
+      padding: 1rem 1.2rem 1.3rem;
+    }
+    .back-link {
+      font-size: 0.9rem;
+    }
+    h1 {
+      margin: 0.8rem 0 0.3rem;
+      font-size: 1.9rem;
+    }
+    .subtitle {
+      margin: 0 0 0.3rem;
+      color: #444;
+    }
+    .meta {
+      margin: 0 0 0.8rem;
+      color: #666;
+      font-size: 0.9rem;
+    }
+    .btn-row {
+      margin-top: 0.3rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .btn {
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid #222;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #fff;
+      background: #222;
+    }
+    .btn.secondary {
+      background: #fff;
+      color: #222;
+    }
+
+    main h2 {
+      margin-top: 1.7rem;
+      margin-bottom: 0.5rem;
+      font-size: 1.3rem;
+      border-bottom: 1px solid #ddd;
+      display: inline-block;
+      padding-bottom: 0.15rem;
+    }
+    main p {
+      margin-top: 0.25rem;
+      line-height: 1.55;
+      font-size: 0.95rem;
+    }
+
+    .teaser {
+      margin-top: 1rem;
+      text-align: center;
+    }
+    .teaser-placeholder {
+      width: 100%;
+      height: 230px;
+      border-radius: 10px;
+      border: 1px dashed #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 0.9rem;
+      background: #fdfdfd;
+    }
+    code, pre {
+      font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <a class="back-link" href="../../index.html">← Back to main page</a>
+    <h1>FLOW-2DGS</h1>
+    <p class="subtitle">Flow-guided Monocular Geometry for Metric-scale Gaussian Splatting</p>
+    <p class="meta">Minsu Kwon · M.S. Thesis project (ongoing)</p>
+    <div class="btn-row">
+      <a class="btn secondary" href="#">Paper (coming soon)</a>
+      <a class="btn secondary" href="#">Code (coming soon)</a>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <section id="teaser" class="teaser">
+    <div class="teaser-placeholder">
+      Teaser image / video of FLOW-2DGS results goes here
+    </div>
+  </section>
+
+  <section id="overview">
+    <h2>Overview</h2>
+    <p>
+      FLOW-2DGS is a monocular 3D reconstruction framework that leverages dense optical flow to
+      recover metric-scale scene geometry using 3D Gaussian splatting. The project aims to bridge
+      the gap between monocular video input and high-quality, metrically accurate 3D representations.
+    </p>
+    <p>
+      This is the core topic of my M.S. thesis at the Robotics and Computer Vision Lab,
+      University of Seoul.
+    </p>
+  </section>
+
+  <section id="abstract">
+    <h2>Abstract (draft)</h2>
+    <p>
+      (석사 논문 준비가 어느 정도 진행되면 여기에 정식 초록을 넣으면 된다. 지금은 간단한 초안.)
+    </p>
+    <p>
+      We present FLOW-2DGS, a flow-guided 3D Gaussian splatting method that reconstructs
+      metric-scale scene geometry from monocular videos. Dense optical flow provides
+      pseudo-metric motion cues, which are combined with geometric priors to scale and
+      stabilize the underlying Gaussian representation. Our approach targets robust geometry
+      recovery in real-world dynamic and low-texture environments.
+    </p>
+  </section>
+
+  <section id="method">
+    <h2>Method</h2>
+    <p>
+      The main components of FLOW-2DGS include:
+    </p>
+    <ul>
+      <li>Dense optical flow estimation between consecutive monocular frames</li>
+      <li>Initialization of a 3D Gaussian field from monocular cues</li>
+      <li>Flow-guided optimization to recover metric-scale geometry</li>
+      <li>Differentiable rendering of the Gaussian splats for training and evaluation</li>
+    </ul>
+    <p>
+      A pipeline diagram and pseudo-code can be added here later to support the final thesis.
+    </p>
+  </section>
+
+  <section id="results">
+    <h2>Results</h2>
+    <p>
+      This section will contain qualitative renderings and quantitative comparisons:
+    </p>
+    <ul>
+      <li>Novel view synthesis results rendered from FLOW-2DGS</li>
+      <li>Comparison with baseline monocular reconstruction / Gaussian splatting methods</li>
+      <li>Evaluation on both synthetic and real-world datasets</li>
+    </ul>
+    <p>
+      For now, treat this as a placeholder for future videos, images, and tables.
+    </p>
+  </section>
+
+  <section id="bibtex">
+    <h2>BibTeX (placeholder)</h2>
+    <p>
+      Once the thesis or a related paper is publicly available, its BibTeX entry can be added here.
+    </p>
+    <pre><code>@mastersthesis{kwon202Xflow2dgs,
+  title  = {FLOW-2DGS: Flow-guided Monocular Geometry for Metric-scale Gaussian Splatting},
+  author = {Kwon, Minsu},
+  school = {University of Seoul},
+  year   = {202X}
+}</code></pre>
+  </section>
+
+</main>
+
+</body>
+</html>
