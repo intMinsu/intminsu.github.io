@@ -12,11 +12,13 @@
       color: #222;
     }
     a { text-decoration: none; }
+
     .container {
       max-width: 980px;
       margin: 0 auto;
       padding: 0 1.2rem 3rem;
     }
+
     header.hero {
       display: flex;
       align-items: center;
@@ -62,6 +64,7 @@
       background: #fff;
       color: #222;
     }
+
     h2 {
       margin-top: 2rem;
       margin-bottom: 0.6rem;
@@ -74,9 +77,11 @@
       margin-top: 0.2rem;
       color: #444;
     }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+
+    /* 1-column list + 카드 레이아웃 */
+    .section-list {
+      display: flex;
+      flex-direction: column;
       gap: 1rem;
     }
     .card {
@@ -85,6 +90,34 @@
       padding: 1rem 1.1rem;
       box-shadow: 0 2px 6px rgba(0,0,0,0.04);
       border: 1px solid #ececec;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .card-thumb {
+      width: 120px;
+      height: 80px;
+      border-radius: 8px;
+      background: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      color: #999;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    /* 썸네일 이미지 쓰고 싶으면
+       <div class="card-thumb"><img src="..." /></div> 이렇게 넣고 아래 스타일 적용 */
+    .card-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .card-body {
+      flex: 1;
+      min-width: 0;
     }
     .card h3 {
       margin-top: 0;
@@ -97,21 +130,29 @@
       color: #666;
     }
     .card p {
-      margin: 0 0 0.6rem;
+      margin: 0 0 0.4rem;
       font-size: 0.9rem;
       color: #444;
+    }
+    .card-links {
+      margin-top: 0.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
     }
     .card-link {
       font-size: 0.9rem;
       font-weight: 500;
       color: #0066cc;
     }
+
     footer {
       margin-top: 2.5rem;
       font-size: 0.8rem;
       color: #777;
       text-align: right;
     }
+
     @media (max-width: 700px) {
       header.hero {
         flex-direction: column;
@@ -124,13 +165,20 @@
       .buttons {
         justify-content: center;
       }
+      .card {
+        flex-direction: column;
+      }
+      .card-thumb {
+        width: 100%;
+        height: 160px;
+      }
     }
   </style>
 </head>
 <body>
 
 <header class="hero">
-  <img class="avatar" src="assets/minsukwon_facepic.jpg" alt="Minsu Kwon">
+  <img class="avatar" src="assets/pic001.jpg" alt="Minsu Kwon">
   <div class="hero-text">
     <h1>Minsu Kwon</h1>
     <p class="tagline">3D Computer Vision Researcher</p>
@@ -151,43 +199,118 @@
     <p>3D Computer Vision · 3D Reconstruction · Gaussian Splatting · Structure-from-Motion · Neural Rendering</p>
   </section>
 
+  <!-- Research Projects -->
   <section id="projects">
     <h2>Research Projects</h2>
-    <div class="grid">
+    <div class="section-list">
+
       <article class="card">
-        <h3>Flow-SfM</h3>
-        <p class="subtitle">Flow-Gated Structure from Motion with Dense UFM Correspondences (submitted)</p>
-        <p>Flow-gated Structure-from-Motion using dense UFM correspondences and optical flow for robust camera pose estimation and 3D structure recovery.</p>
-        <a href="flow-sfm/index.html" class="card-link">Project page →</a>
+        <div class="card-thumb">
+          <img src="assets/flow_sfm_thumb.jpg" alt="Flow-SfM teaser">
+          Flow-SfM
+        </div>
+        <div class="card-body">
+          <h3>Flow-SfM</h3>
+          <p class="subtitle">Flow-Gated Structure from Motion with Dense UFM Correspondences (submitted)</p>
+          <p>
+            Flow-gated Structure-from-Motion using dense UFM correspondences and optical flow
+            for robust camera pose estimation and 3D structure recovery.
+          </p>
+          <div class="card-links">
+            <a href="projects/flow-sfm/index.html" class="card-link">Project page →</a>
+          </div>
+        </div>
       </article>
 
       <article class="card">
-        <h3>FLOW-2DGS</h3>
-        <p class="subtitle">Flow-guided Monocular Geometry for Metric-scale Gaussian Splatting (ongoing, M.S. thesis)</p>
-        <p>Monocular 3D reconstruction with metric-scale Gaussian splatting guided by optical flow; the core of my M.S. thesis.</p>
-        <a href="flow-2dgs/index.html" class="card-link">Project page →</a>
+        <div class="card-thumb">
+          <img src="assets/flow_2dgs_thumb.jpg" alt="Flow-2DGS teaser">
+          Flow-2DGS
+        </div>
+        <div class="card-body">
+          <h3>Flow-2DGS</h3>
+          <p class="subtitle">Flow-guided Monocular Geometry for Metric-scale Gaussian Splatting (ongoing, M.S. thesis)</p>
+          <p>
+            Monocular 3D reconstruction with metric-scale Gaussian splatting guided by optical flow;
+            the core of my M.S. thesis work.
+          </p>
+          <div class="card-links">
+            <a href="projects/flow-2dgs/index.html" class="card-link">Project page →</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- Work Experience (placeholder) -->
+  <section id="work-experience">
+    <h2>Work Experience</h2>
+    <div class="section-list">
+      <article class="card">
+        <div class="card-thumb">
+          <!-- Need to be filled -->
+          -
+        </div>
+        <div class="card-body">
+          <h3>Future Research / Industry Experience</h3>
+          <p class="subtitle">To be updated</p>
+          <p>
+            This section will be updated as new experiences are added.
+          </p>
+        </div>
       </article>
     </div>
   </section>
 
+  <!-- Other Work -->
   <section id="other-work">
     <h2>Other Work</h2>
-    <div class="grid">
+    <div class="section-list">
+
       <article class="card">
-        <h3>Teaching Assistant – Intelligent Robots</h3>
-        <p class="subtitle">University of Seoul · 2023–2025</p>
-        <p>Jetson-based lab setup and maintenance, TensorRT examples, and technical support for students in the Intelligent Robots course.</p>
-        <a href="https://feline-turret-112.notion.site/ac39978be31a47f186f408f930e21caa" class="card-link">
-          Course page →
-        </a>
+        <div class="card-thumb">
+          <img src="assets/ta_robots_thumb.jpg" alt="Intelligent Robots course">
+          Teaching
+        </div>
+        <div class="card-body">
+          <h3>Teaching Assistant – Intelligent Robots</h3>
+          <p class="subtitle">University of Seoul · 2023–2025</p>
+          <p>
+            Jetson-based lab setup and maintenance, TensorRT examples, and technical support for
+            students in the Intelligent Robots course.
+          </p>
+          <div class="card-links">
+            <a href="https://feline-turret-112.notion.site/ac39978be31a47f186f408f930e21caa" class="card-link">
+              Course page →
+            </a>
+          </div>
+        </div>
       </article>
 
       <article class="card">
-        <h3>DACON + AICOSS Computer Vision Hackathon</h3>
-        <p class="subtitle">1st Place · 2023</p>
-        <p>Developed a winning computer vision pipeline including data preprocessing, model design, and ensemble strategies.</p>
-        <a href="hackathon/index.html" class="card-link">Summary (coming soon) →</a>
+        <div class="card-thumb">
+          <img src="assets/hackathon_thumb.jpg" alt="Hackathon">
+          Hackathon
+        </div>
+        <div class="card-body">
+          <h3>DACON + AICOSS Computer Vision Hackathon</h3>
+          <p class="subtitle">1st Place · 2023</p>
+          <p>
+            Developed a winning computer vision pipeline including data preprocessing, model design,
+            and ensemble strategies.
+          </p>
+          <div class="card-links">
+            <a href="https://docs.google.com/presentation/d/1Wfkme_Nj9lroAW7mtZD9ZlLohyXEfWayLGf8N1GY1OA/edit?usp=sharing" class="card-link">
+              Google slides
+            </a>
+            <a href="https://drive.google.com/file/d/1SUkexG_7Bs5BskZNmlAuzcM8rMS6j4V_/view?usp=sharing" class="card-link">
+              Award photo
+            </a>
+          </div>
+        </div>
       </article>
+
     </div>
   </section>
 
