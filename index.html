@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Minsu Kwon | 3D Computer Vision</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      background: #fafafa;
+      color: #222;
+    }
+    a { text-decoration: none; }
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 0 1.2rem 3rem;
+    }
+    header.hero {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2.5rem 1.2rem 1.5rem;
+      background: #ffffff;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    .avatar {
+      width: 180px;
+      border-radius: 8px;
+      margin-right: 2rem;
+    }
+    .hero-text h1 {
+      margin: 0;
+      font-size: 2.1rem;
+    }
+    .tagline {
+      margin: 0.4rem 0 0.2rem;
+      font-weight: 500;
+      color: #444;
+    }
+    .hero-text p {
+      margin: 0.15rem 0;
+      color: #555;
+    }
+    .buttons {
+      margin-top: 0.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+    .btn {
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid #222;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #fff;
+      background: #222;
+    }
+    .btn.secondary {
+      background: #fff;
+      color: #222;
+    }
+    h2 {
+      margin-top: 2rem;
+      margin-bottom: 0.6rem;
+      font-size: 1.4rem;
+      border-bottom: 1px solid #ddd;
+      display: inline-block;
+      padding-bottom: 0.15rem;
+    }
+    #research-interests p {
+      margin-top: 0.2rem;
+      color: #444;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 1rem 1.1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+      border: 1px solid #ececec;
+    }
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 0.35rem;
+      font-size: 1.05rem;
+    }
+    .card .subtitle {
+      margin: 0 0 0.5rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+    .card p {
+      margin: 0 0 0.6rem;
+      font-size: 0.9rem;
+      color: #444;
+    }
+    .card-link {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #0066cc;
+    }
+    footer {
+      margin-top: 2.5rem;
+      font-size: 0.8rem;
+      color: #777;
+      text-align: right;
+    }
+    @media (max-width: 700px) {
+      header.hero {
+        flex-direction: column;
+        text-align: center;
+      }
+      .avatar {
+        margin-right: 0;
+        margin-bottom: 1rem;
+      }
+      .buttons {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header class="hero">
+  <img class="avatar" src="assets/minsukwon_facepic.jpg" alt="Minsu Kwon">
+  <div class="hero-text">
+    <h1>Minsu Kwon</h1>
+    <p class="tagline">3D Computer Vision Researcher</p>
+    <p>M.S. in Artificial Intelligence, Robotics and Computer Vision Lab</p>
+    <p>University of Seoul</p>
+    <div class="buttons">
+      <a href="cv/CV_Minsu_Kwon_25Nov19.pdf" class="btn">Download CV (PDF)</a>
+      <a href="https://github.com/intMinsu" class="btn secondary">GitHub</a>
+      <a href="mailto:minsurcv@gmail.com" class="btn secondary">Email</a>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <section id="research-interests">
+    <h2>Research Interests</h2>
+    <p>3D Computer Vision · 3D Reconstruction · Gaussian Splatting · Structure-from-Motion · Neural Rendering</p>
+  </section>
+
+  <section id="projects">
+    <h2>Research Projects</h2>
+    <div class="grid">
+      <article class="card">
+        <h3>Flow-SfM</h3>
+        <p class="subtitle">Flow-Gated Structure from Motion with Dense UFM Correspondences (submitted)</p>
+        <p>Flow-gated Structure-from-Motion using dense UFM correspondences and optical flow for robust camera pose estimation and 3D structure recovery.</p>
+        <a href="flow-sfm/index.html" class="card-link">Project page →</a>
+      </article>
+
+      <article class="card">
+        <h3>FLOW-2DGS</h3>
+        <p class="subtitle">Flow-guided Monocular Geometry for Metric-scale Gaussian Splatting (ongoing, M.S. thesis)</p>
+        <p>Monocular 3D reconstruction with metric-scale Gaussian splatting guided by optical flow; the core of my M.S. thesis.</p>
+        <a href="flow-2dgs/index.html" class="card-link">Project page →</a>
+      </article>
+    </div>
+  </section>
+
+  <section id="other-work">
+    <h2>Other Work</h2>
+    <div class="grid">
+      <article class="card">
+        <h3>Teaching Assistant – Intelligent Robots</h3>
+        <p class="subtitle">University of Seoul · 2023–2025</p>
+        <p>Jetson-based lab setup and maintenance, TensorRT examples, and technical support for students in the Intelligent Robots course.</p>
+        <a href="https://feline-turret-112.notion.site/ac39978be31a47f186f408f930e21caa" class="card-link">
+          Course page →
+        </a>
+      </article>
+
+      <article class="card">
+        <h3>DACON + AICOSS Computer Vision Hackathon</h3>
+        <p class="subtitle">1st Place · 2023</p>
+        <p>Developed a winning computer vision pipeline including data preprocessing, model design, and ensemble strategies.</p>
+        <a href="hackathon/index.html" class="card-link">Summary (coming soon) →</a>
+      </article>
+    </div>
+  </section>
+
+  <footer>
+    <p>Last updated: 2025-11-19</p>
+  </footer>
+
+</main>
+
+</body>
+</html>
