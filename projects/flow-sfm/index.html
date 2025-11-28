@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -78,18 +78,22 @@
       margin-top: 1rem;
       text-align: center;
     }
-    .teaser-placeholder {
-      width: 100%;
-      height: 230px;
-      border-radius: 10px;
-      border: 1px dashed #ccc;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #999;
-      font-size: 0.9rem;
-      background: #fdfdfd;
+
+    .figure {
+      margin: 1rem 0 0.5rem;
+      text-align: center;
     }
+    .figure img {
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    }
+    .figure-caption {
+      font-size: 0.8rem;
+      color: #666;
+      margin-top: 0.3rem;
+    }
+
     code, pre {
       font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       font-size: 0.85rem;
@@ -113,9 +117,18 @@
 
 <main class="container">
 
+  <!-- Top teaser: pipeline figure (flow_sfm_fig2.webp) -->
   <section id="teaser" class="teaser">
-    <div class="teaser-placeholder">
-      Teaser image / GIF of Flow-SfM results goes here
+    <div class="figure">
+      <picture>
+        <source srcset="assets/flow_sfm_fig2.webp" type="image/webp">
+        <img src="assets/flow_sfm_fig2.webp"
+             alt="Flow-SfM pipeline overview: flow-gated pair scoring, budgeted scene graph, conflict-free deduplication, and SfM back-end.">
+      </picture>
+      <p class="figure-caption">
+        High-level overview of the Flow-SfM pipeline: flow-gated pair scoring, budgeted scene graph construction,
+        conflict-free deduplication into virtual keypoints, and a standard SfM back-end with weighted triangulation.
+      </p>
     </div>
   </section>
 
@@ -229,10 +242,20 @@
         clouds in scenes such as <em>Barn</em> and <em>Ignatius</em>.
       </li>
     </ul>
-    <p>
-      Qualitative examples and quantitative tables (registration rate, accuracy,
-      and mesh F1 scores) will be included here once the paper figures are finalized.
-    </p>
+
+    <!-- Qualitative + quantitative result figure (flow_sfm_fig1.webp) -->
+    <div class="figure">
+      <picture>
+        <source srcset="assets/flow_sfm_fig1.webp" type="image/webp">
+        <img src="assets/flow_sfm_fig1.webp"
+             alt="Flow-SfM qualitative and quantitative results on multi-view reconstruction benchmarks.">
+      </picture>
+      <p class="figure-caption">
+        Qualitative 3D reconstruction and quantitative pose estimation results on ETH3D and
+        Tanks &amp; Temples. Flow-SfM provides higher-quality reconstructions and stronger
+        pose accuracy compared to baselines.
+      </p>
+    </div>
   </section>
 
   <section id="relation">
