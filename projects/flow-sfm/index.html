@@ -122,60 +122,129 @@
   <section id="overview">
     <h2>Overview</h2>
     <p>
-      Flow-SfM is a flow-gated Structure-from-Motion framework that combines dense UFM
-      correspondences with optical flow to robustly estimate camera poses and reconstruct
-      dense 3D scene geometry in challenging multi-view settings.
+      Flow-SfM is a detector-free Structure-from-Motion (SfM) framework that leverages
+      dense correspondences from UFM to build a more reliable and efficient multi-view
+      reconstruction pipeline. Rather than relying only on sparse keypoints, Flow-SfM
+      operates on dense flow and covisibility predictions to construct a <em>budgeted</em>
+      scene graph and robust multi-view tracks.
     </p>
     <p>
-      By leveraging dense correspondences rather than only sparse keypoints, Flow-SfM aims to
-      improve robustness in low-texture or repetitive regions, while the flow-gating mechanism
-      filters unreliable matches using temporal motion cues.
+      The key idea is to use dense flow and symmetric confidence estimates to score
+      image pairs, select only geometrically useful connections, and then compress
+      millions of dense matches into a small set of virtual keypoints via conflict-free
+      deduplication. These virtual keypoints are fed into an off-the-shelf SfM back-end
+      (e.g., COLMAP) for pose estimation and sparse structure recovery, followed by
+      dense triangulation. This allows Flow-SfM to handle low-texture, low-overlap, and
+      wide-baseline image collections more robustly than traditional sparse-feature SfM.
     </p>
   </section>
 
   <section id="abstract">
     <h2>Abstract</h2>
     <p>
-      (여기에는 나중에 실제 논문 초록을 영어로 붙여 넣으면 좋다. 지금은 간단한 placeholder.)
+      Classical SfM systems are built around sparse keypoints and fully-connected scene
+      graphs, which become brittle and inefficient in challenging regimes such as
+      low-texture scenes, wide baselines, or unordered image collections. In contrast,
+      modern dense matchers such as UFM provide sub-pixel accurate dense correspondences
+      and covisibility predictions across views, but it is non-trivial to integrate them
+      into efficient and stable SfM pipelines.
     </p>
     <p>
-      We propose a dense correspondence based Structure-from-Motion pipeline that integrates
-      optical flow to gate unreliable matches. Dense UFM correspondences are first extracted
-      across views, followed by flow-guided filtering that suppresses inconsistent matches.
-      The remaining correspondences are used for robust camera pose estimation and dense 3D
-      structure recovery, leading to improved performance on challenging scenes.
+      Flow-SfM bridges this gap with a flow-gated SfM formulation. We first obtain dense
+      UFM correspondences and per-pixel confidence maps between candidate image pairs.
+      A <em>flow-gated pair scoring</em> strategy selects only promising pairs under a
+      global pair budget, forming a sparse but informative scene graph. For each selected
+      pair, we cluster dense correspondences into a small number of virtual keypoints via
+      <em>conflict-free deduplication</em>, which suppresses inconsistent tracks and
+      reduces the burden on bundle adjustment. The resulting keypoints are passed to a
+      standard SfM back-end to recover camera poses and a sparse 3D structure, followed
+      by dense triangulation guided by the UFM confidences. On ETH3D and Tanks &amp;
+      Temples, Flow-SfM achieves high registration rates and strong pose accuracy in
+      difficult settings, and provides high-quality initialization for downstream 3D
+      Gaussian Splatting and mesh reconstruction pipelines.
     </p>
   </section>
 
   <section id="method">
     <h2>Method</h2>
     <p>
-      The Flow-SfM pipeline consists of:
+      At a high level, Flow-SfM consists of the following components:
     </p>
     <ul>
-      <li>Dense feature extraction and UFM correspondences across multiple views</li>
-      <li>Optical flow estimation between consecutive frames</li>
-      <li>Flow-gated filtering of inconsistent correspondences</li>
-      <li>Robust pose estimation and triangulation using the filtered matches</li>
-      <li>Refinement and dense reconstruction of the scene structure</li>
+      <li>
+        <strong>Dense UFM correspondences:</strong> For each candidate image pair,
+        UFM predicts dense correspondences, covisibility, and symmetric confidence
+        maps at sub-pixel precision.
+      </li>
+      <li>
+        <strong>Flow-gated pair scoring:</strong> We aggregate per-pixel confidence
+        into a <em>flow-gated pair score</em> that measures how useful a pair is
+        for SfM. A global pair budget and per-node degree constraints are imposed
+        to construct a compact, well-connected scene graph.
+      </li>
+      <li>
+        <strong>Conflict-free deduplication:</strong> For each selected pair, dense
+        matches are clustered into micro-groups and then merged into a small set
+        of <em>virtual keypoints</em>. This reduces track conflicts and keeps the
+        number of observations per image manageable.
+      </li>
+      <li>
+        <strong>SfM back-end integration:</strong> The virtual keypoints and their
+        cross-view tracks are fed into a standard SfM back-end (e.g., COLMAP) to
+        estimate camera poses and a sparse 3D structure.
+      </li>
+      <li>
+        <strong>Dense 3D reconstruction:</strong> Finally, we perform dense
+        triangulation guided by UFM confidences to obtain a dense point cloud,
+        which can be further used for 3D Gaussian Splatting or mesh extraction.
+      </li>
     </ul>
     <p>
-      A figure illustrating this pipeline (e.g., a block diagram) can be inserted here later.
+      The Flow-SfM design emphasizes a balance between robustness and efficiency:
+      by aggressively filtering pairs and deduplicating matches before bundle
+      adjustment, we can exploit dense correspondence quality without exploding
+      computational cost.
     </p>
   </section>
 
   <section id="results">
     <h2>Results</h2>
     <p>
-      This section will showcase qualitative and quantitative results, such as:
+      We evaluate Flow-SfM on several challenging multi-view benchmarks, including
+      ETH3D, Tanks &amp; Temples, and additional low-overlap image collections.
+      Compared to baseline SfM pipelines built on sparse keypoints, Flow-SfM:
     </p>
     <ul>
-      <li>Novel view renderings or depth maps reconstructed by Flow-SfM</li>
-      <li>Comparisons against baseline SfM methods under challenging conditions</li>
-      <li>Failure cases and analysis</li>
+      <li>
+        Achieves higher registration rates and more stable pose estimation in
+        low-texture or repetitive regions.
+      </li>
+      <li>
+        Maintains competitive or improved rotational and translational accuracy
+        (RRA/RTA) under a constrained pair budget.
+      </li>
+      <li>
+        Provides better initial poses for downstream 3D Gaussian Splatting
+        pipelines, leading to higher-quality meshes and denser, cleaner point
+        clouds in scenes such as <em>Barn</em> and <em>Ignatius</em>.
+      </li>
     </ul>
     <p>
-      For now, this is a placeholder for future figures, GIFs, and tables.
+      Qualitative examples and quantitative tables (registration rate, accuracy,
+      and mesh F1 scores) will be included here once the paper figures are finalized.
+    </p>
+  </section>
+
+  <section id="relation">
+    <h2>Relation to Flow-2DGS and 3D Gaussian Splatting</h2>
+    <p>
+      Flow-SfM is designed not only as a standalone SfM system but also as a
+      robust front-end for neural rendering and Gaussian Splatting. In subsequent
+      work (Flow-2DGS), we explore how dense flow-guided monocular geometry and
+      Flow-SfM camera poses can be used to obtain metric-scale, geometrically
+      accurate 3D reconstructions with 2D Gaussian Splatting. Flow-SfM provides
+      the camera trajectory and an initial 3D structure, which significantly
+      stabilizes training and improves the quality of the reconstructed meshes.
     </p>
   </section>
 
@@ -186,7 +255,7 @@
     </p>
     <pre><code>@inproceedings{kwon202Xflowsfm,
   title     = {Flow-SfM: Flow-Gated Structure from Motion with Dense UFM Correspondences},
-  author    = {Kwon, Minsu and ...},
+  author    = {Kwon, Minsu and Others},
   booktitle = {...},
   year      = {202X}
 }</code></pre>
